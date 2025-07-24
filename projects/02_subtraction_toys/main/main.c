@@ -60,6 +60,14 @@ void app_main(void)
     ESP_LOGI(TAG, "   เหลืออยู่:   🧩🎮🧸🚁🎯 (%d ชิ้น)", toys_remaining);
     ESP_LOGI(TAG, "");
     
+    int dolls = 5;        // ตุ๊กตา
+    int robots = 2;       // หุ่นยนต์
+    int total_toys = toys_at_home + dolls + robots;
+
+    ESP_LOGI(TAG, "🪆 ตุ๊กตา: %d ตัว", dolls);
+    ESP_LOGI(TAG, "🤖 หุ่นยนต์: %d ตัว", robots);
+    ESP_LOGI(TAG, "🎯 ของเล่นทั้งหมด: %d ชิ้น", total_toys);
+    
     // ตัวอย่างเพิ่มเติม
     ESP_LOGI(TAG, "💡 ตัวอย่างเพิ่มเติม:");
     
