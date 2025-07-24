@@ -14,7 +14,19 @@ void app_main(void)
     int number_of_bags = 7;        // จำนวนถุง
     int candies_per_bag = 8;       // ลูกอมต่อถุง
     int total_candies;             // ลูกอมทั้งหมด
-    
+    int strawberry_bags = 3;    // ถุงรสสตรอเบอร์รี่
+    int orange_bags = 2;        // ถุงรสส้ม
+    int grape_bags = 4;         // ถุงรสองุ่น
+
+    int total_bags = strawberry_bags + orange_bags + grape_bags;
+    int total_candies = total_bags * candies_per_bag;
+
+        ESP_LOGI(TAG, "🍓 สตรอเบอร์รี่: %d ถุง = %d เม็ด", 
+        strawberry_bags, strawberry_bags * candies_per_bag);
+        ESP_LOGI(TAG, "🍊 รสส้ม: %d ถุง = %d เม็ด", 
+        orange_bags, orange_bags * candies_per_bag);
+        ESP_LOGI(TAG, "🍇 รสองุ่น: %d ถุง = %d เม็ด", 
+        grape_bags, grape_bags * candies_per_bag);
     // แสดงข้อมูลเริ่มต้น
     ESP_LOGI(TAG, "📖 โจทย์:");
     ESP_LOGI(TAG, "   มีถุงลูกอม: %d ถุง", number_of_bags);
