@@ -27,6 +27,10 @@ void app_main(void)
         orange_bags, orange_bags * candies_per_bag);
         ESP_LOGI(TAG, "🍇 รสองุ่น: %d ถุง = %d เม็ด", 
         grape_bags, grape_bags * candies_per_bag);
+        ESP_LOGI(TAG, "📊 ตารางสูตรคูณของ %d:", candies_per_bag);
+    for (int i = 1; i <= 10; i++) {
+        ESP_LOGI(TAG, "   %d x %d = %d", i, candies_per_bag, i * candies_per_bag);
+}
     // แสดงข้อมูลเริ่มต้น
     ESP_LOGI(TAG, "📖 โจทย์:");
     ESP_LOGI(TAG, "   มีถุงลูกอม: %d ถุง", number_of_bags);
