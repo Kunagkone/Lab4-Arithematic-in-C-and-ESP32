@@ -67,7 +67,7 @@ void app_main(void)
     ESP_LOGI(TAG, "🪆 ตุ๊กตา: %d ตัว", dolls);
     ESP_LOGI(TAG, "🤖 หุ่นยนต์: %d ตัว", robots);
     ESP_LOGI(TAG, "🎯 ของเล่นทั้งหมด: %d ชิ้น", total_toys);
-    
+
     // ตัวอย่างเพิ่มเติม
     ESP_LOGI(TAG, "💡 ตัวอย่างเพิ่มเติม:");
     
@@ -117,4 +117,20 @@ void app_main(void)
     ESP_LOGI(TAG, "📖 อ่านต่อในโปรเจคถัดไป: 03_multiplication_candies");
     
     vTaskDelay(2000 / portTICK_PERIOD_MS);
-}
+    int friends = 10;
+    int toys_per_friend = 2;
+    int total_needed = friends * toys_per_friend;
+
+    int available = 15;  
+    int missing = 0;
+
+    printf("ต้องมีของเล่นทั้งหมด: %d ชิ้น\n", total_needed);
+
+    if (available < total_needed) {
+        missing = total_needed - available;
+        printf("มีของเล่น %d ชิ้น ขาดอีก %d ชิ้น\n", available, missing);
+    } else {
+        printf("มีของเล่น %d ชิ้น เพียงพอสำหรับแจก\n", available);
+    }
+        return 0;
+} 
