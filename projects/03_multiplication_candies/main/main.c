@@ -11,8 +11,8 @@ void app_main(void)
     ESP_LOGI(TAG, "====================================");
     
     // ประกาศตัวแปรเก็บจำนวนลูกอม
-    int number_of_bags = 5;        // จำนวนถุง
-    int candies_per_bag = 6;       // ลูกอมต่อถุง
+    int number_of_bags = 7;        // จำนวนถุง
+    int candies_per_bag = 8;       // ลูกอมต่อถุง
     int total_candies;             // ลูกอมทั้งหมด
     
     // แสดงข้อมูลเริ่มต้น
