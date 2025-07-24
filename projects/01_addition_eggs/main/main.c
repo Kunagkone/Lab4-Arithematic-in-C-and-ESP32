@@ -13,7 +13,7 @@ void app_main(void)
     
     // ประกาศตัวแปรเก็บจำนวนไข่
     int eggs_already_have = 8;    // ไข่ไก่ที่แม่มีอยู่แล้ว
-    int eggs_new_today = 3;       // ไข่ไก่ที่ไก่ออกวันนี้
+    int eggs_new_today = 4;       // ไข่ไก่ที่ไก่ออกวันนี้
     int total_eggs;               // ไข่ไก่ทั้งหมด
     
     // แสดงข้อมูลเริ่มต้น
