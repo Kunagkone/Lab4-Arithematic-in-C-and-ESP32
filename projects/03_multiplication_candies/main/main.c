@@ -55,6 +55,13 @@ void app_main(void)
     ESP_LOGI(TAG, "   มีลูกอมทั้งหมด %d เม็ด", total_candies);
     ESP_LOGI(TAG, "");
     
+    int friends = 12;           // จำนวนเพื่อน
+    int candies_per_friend = total_candies / friends;  // ลูกอมต่อคน
+    int remaining_candies = total_candies % friends;   // ลูกอมที่เหลือ
+
+    ESP_LOGI(TAG, "👥 แจกให้เพื่อน %d คน:", friends);
+    ESP_LOGI(TAG, "   คนละ %d เม็ด", candies_per_friend);
+    ESP_LOGI(TAG, "   เหลือ %d เม็ด", remaining_candies);
     // แสดงภาพประกอบ
     ESP_LOGI(TAG, "🎨 ภาพประกอบ:");
     ESP_LOGI(TAG, "   ถุงที่ 1: 🍬🍬🍬🍬🍬🍬 (%d เม็ด)", candies_per_bag);
