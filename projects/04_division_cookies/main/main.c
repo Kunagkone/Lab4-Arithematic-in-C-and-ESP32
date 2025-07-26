@@ -11,8 +11,8 @@ void app_main(void)
     ESP_LOGI(TAG, "================================");
     
     // ประกาศตัวแปรเก็บจำนวนคุกกี้
-    int total_cookies = 12;        // คุกกี้ทั้งหมด
-    int number_of_friends = 4;     // จำนวนเพื่อน
+    int total_cookies = 24;        // คุกกี้ทั้งหมด
+    int number_of_friends = 6;     // จำนวนเพื่อน
     int cookies_per_person;        // คุกกี้ต่อคน
     int remaining_cookies;         // คุกกี้ที่เหลือ
     
