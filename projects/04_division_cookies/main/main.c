@@ -29,7 +29,15 @@ void app_main(void)
     ESP_LOGI(TAG, "   จะแบ่งให้เพื่อน: %d คน", number_of_friends);
     ESP_LOGI(TAG, "   ❓ แต่ละคนได้คุกกี้กี่ชิ้น?");
     ESP_LOGI(TAG, "");
-    
+    int cookies = 30;
+    ESP_LOGI(TAG, "🔍 คุกกี้ %d ชิ้น หารลงตัวกับ:", cookies);
+
+    for (int people = 1; people <= 10; people++) {
+        if (cookies % people == 0) {
+            ESP_LOGI(TAG, "   ✅ %d คน → คนละ %d ชิ้น", 
+                 people, cookies / people);
+    }
+}
     vTaskDelay(3000 / portTICK_PERIOD_MS);
     
     // ตรวจสอบการหารด้วยศูนย์
