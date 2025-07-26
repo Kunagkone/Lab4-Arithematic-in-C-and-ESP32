@@ -15,7 +15,14 @@ void app_main(void)
     int number_of_friends = 6;     // จำนวนเพื่อน
     int cookies_per_person;        // คุกกี้ต่อคน
     int remaining_cookies;         // คุกกี้ที่เหลือ
-    
+    int cookies_per_person = total_cookies / friends;
+    int remaining_cookies = total_cookies % friends;
+
+    if (remaining_cookies == 0) {
+    ESP_LOGI(TAG, "✅ หารลงตัว! ทุกคนได้เท่ากัน");
+     } else {
+    ESP_LOGI(TAG, "⚠️ หารไม่ลงตัว! เหลือ %d ชิ้น", remaining_cookies);
+    }
     // แสดงข้อมูลเริ่มต้น
     ESP_LOGI(TAG, "📖 โจทย์:");
     ESP_LOGI(TAG, "   มีคุกกี้: %d ชิ้น", total_cookies);
