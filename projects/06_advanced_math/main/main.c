@@ -3,7 +3,7 @@
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-
+#define PI 3.14159  // ค่าคงที่ของ pi
 // 🏷️ Tag สำหรับ Log
 static const char *TAG = "ADVANCED_MATH";
 
@@ -190,4 +190,76 @@ void app_main(void) {
     
     ESP_LOGI(TAG, "\n✅ เสร็จสิ้นการคำนวณทั้งหมด!");
     ESP_LOGI(TAG, "🎓 ได้เรียนรู้: คณิตศาสตร์ขั้นสูง, struct, #define, และฟังก์ชันคณิตศาสตร์");
+}
+
+
+
+
+
+// ฟังก์ชันสำหรับคำนวณรูปแบบต่าง ๆ
+
+// 1. สนามฟุตบอล (พื้นที่ และ เส้นรอบรูป)
+    float calcRectArea(float length, float width) {
+        return length * width;
+}
+
+    float calcRectPerimeter(float length, float width) {
+        return 2 * (length + width);
+}
+
+    // 2. สระน้ำกลม (พื้นที่วงกลม และ ปริมาตรทรงกระบอก)
+    float calcCircleArea(float radius) {
+        return PI * radius * radius;
+}
+
+    float calcCylinderVolume(float radius, float height) {
+        return PI * radius * radius * height;
+}
+
+    // 3. กล่องของขวัญ (ปริมาตร และ พื้นที่ผิว)
+    float calcBoxVolume(float length, float width, float height) {
+        return length * width * height;
+}
+
+    float calcBoxSurface(float length, float width, float height) {
+        return 2 * (length * width + width * height + height * length);
+}
+
+    int main() {
+    // 1. สนามฟุตบอล
+    float fieldLength = 100, fieldWidth = 60;
+    float fieldArea = calcRectArea(fieldLength, fieldWidth);
+    float fieldPerimeter = calcRectPerimeter(fieldLength, fieldWidth);
+
+    // 2. สระน้ำกลม
+    float poolRadius = 5, poolDepth = 2;
+    float poolArea = calcCircleArea(poolRadius);
+    float poolVolume = calcCylinderVolume(poolRadius, poolDepth);
+
+    // 3. กล่องของขวัญ
+    float boxLength = 20, boxWidth = 10, boxHeight = 10;
+    float boxVolume = calcBoxVolume(boxLength, boxWidth, boxHeight);
+    float boxSurface = calcBoxSurface(boxLength, boxWidth, boxHeight);
+
+    // แสดงผลลัพธ์
+    printf("== สนามฟุตบอล ==\n");
+    printf("พื้นที่: %.2f ตร.ม.\n", fieldArea);
+    printf("ความยาวรั้ว: %.2f เมตร\n\n", fieldPerimeter);
+
+    printf("== สระน้ำกลม ==\n");
+    printf("พื้นที่ผิวน้ำ: %.2f ตร.ม.\n", poolArea);
+    printf("ปริมาตรน้ำ: %.2f ลูกบาศก์เมตร\n\n", poolVolume);
+
+    printf("== กล่องของขวัญ ==\n");
+    printf("ปริมาตร: %.2f ลูกบาศก์ซม.\n", boxVolume);
+    printf("พื้นที่ผิว: %.2f ตร.ซม.\n\n", boxSurface);
+
+    // เปรียบเทียบ
+    printf("== เปรียบเทียบ ==\n");
+    if (poolVolume > boxVolume)
+        printf("สระน้ำมีปริมาตรมากกว่ากล่องของขวัญ\n");
+    else
+        printf("กล่องของขวัญมีปริมาตรมากกว่าสระน้ำ\n");
+
+    return 0;
 }
