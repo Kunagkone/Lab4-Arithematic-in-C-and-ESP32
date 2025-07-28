@@ -343,3 +343,83 @@ void app_main(void) {
     ESP_LOGI(TAG, "🎓 ได้เรียนรู้: enum, struct, error codes, และการตรวจสอบข้อมูล");
     ESP_LOGI(TAG, "🏆 ตอนนี้คุณสามารถเขียนโค้ดที่ปลอดภัยและน่าเชื่อถือแล้ว!");
 }
+   
+
+// กำหนดรหัสข้อผิดพลาด
+typedef enum {
+    NO_ERROR,
+    ERR_DIVIDE_BY_ZERO,
+    ERR_NEGATIVE_BALANCE,
+    ERR_INVALID_PRICE,
+    ERR_OVERFLOW_AMOUNT,
+    ERR_INVALID_INTEREST
+} ErrorCode;
+
+// ฟังก์ชันแสดงข้อความเตือน
+void showErrorMessage(ErrorCode code) {
+    switch(code) {
+        case ERR_DIVIDE_BY_ZERO:
+            printf("⚠️ ไม่สามารถหารด้วยศูนย์ได้ กรุณาระบุจำนวนลูกค้าใหม่\n");
+            break;
+        case ERR_NEGATIVE_BALANCE:
+            printf("⚠️ จำนวนเงินติดลบ! โปรดตรวจสอบยอดเงินก่อน\n");
+            break;
+        case ERR_INVALID_PRICE:
+            printf("⚠️ ราคาสินค้าไม่ถูกต้อง! กรุณาใส่ราคาเป็นตัวเลข\n");
+            break;
+        case ERR_OVERFLOW_AMOUNT:
+            printf("⚠️ ยอดเงินฝากสูงเกินไป! เกินขีดจำกัดระบบ\n");
+            break;
+        case ERR_INVALID_INTEREST:
+            printf("⚠️ อัตราดอกเบี้ยไม่ควรติดลบ! ตรวจสอบเงื่อนไขการคำนวณ\n");
+            break;
+        default:
+            break;
+    }
+}
+
+// ร้านพิซซ่า
+ErrorCode checkPizzaShop(int pizza, int customers) {
+    if (customers == 0)
+        return ERR_DIVIDE_BY_ZERO;
+    printf("🍕 พิซซ่าเฉลี่ยคนละ %d ชิ้น\n", pizza / customers);
+    return NO_ERROR;
+}
+
+// ร้านขายของ
+ErrorCode checkShop(float balance, char *priceStr) {
+    if (balance < 0)
+        return ERR_NEGATIVE_BALANCE;
+    for (int i = 0; i < strlen(priceStr); i++) {
+        if (priceStr[i] < '0' || priceStr[i] > '9')
+            return ERR_INVALID_PRICE;
+    }
+    return NO_ERROR;
+}
+
+// ธนาคาร
+ErrorCode checkBank(long long deposit, float interestRate) {
+    if (deposit > 999999999)
+        return ERR_OVERFLOW_AMOUNT;
+    if (interestRate < 0)
+        return ERR_INVALID_INTEREST;
+    return NO_ERROR;
+}
+
+int main() {
+    ErrorCode err;
+
+    // ร้านพิซซ่า
+    err = checkPizzaShop(12, 0);
+    if (err != NO_ERROR) showErrorMessage(err);
+
+    // ร้านขายของ
+    err = checkShop(-50, "ABC");
+    if (err != NO_ERROR) showErrorMessage(err);
+
+    // ธนาคาร
+    err = checkBank(999999999, -5.0);
+    if (err != NO_ERROR) showErrorMessage(err);
+
+    return 0;
+}
