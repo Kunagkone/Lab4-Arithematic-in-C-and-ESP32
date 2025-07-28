@@ -558,3 +558,116 @@ void app_main(void) {
     
     ESP_LOGI(TAG, "\n🎯 โปรแกรมเสร็จสิ้น - ขอบคุณที่ใช้งาน!");
 }
+
+    
+
+
+// 2. Data Structures and Enums
+    typedef enum { BASIC, ADVANCED, SHOP, HISTORY } Mode;
+    typedef struct {
+        char entry[100];
+    } HistoryEntry;
+
+    HistoryEntry history[MAX_HISTORY];
+    int historyCount = 0;
+
+// 3. Core Calculation Functions
+    void add(double a, double b) { printf("Result: %.2f\n", a + b); }
+    void subtract(double a, double b) { printf("Result: %.2f\n", a - b); }
+    void multiply(double a, double b) { printf("Result: %.2f\n", a * b); }
+    void divide(double a, double b) {
+        if (b == 0) printf("Error: Division by zero!\n");
+            else printf("Result: %.2f\n", a / b);
+}
+    void power(double a, double b) { printf("Result: %.2f\n", pow(a, b)); }
+    void squareRoot(double a) { printf("Result: %.2f\n", sqrt(a)); }
+    unsigned long long factorial(int n) {
+        if (n < 0) return 0;
+    unsigned long long result = 1;
+         for (int i = 1; i <= n; i++) result *= i;
+    return result;
+}
+
+// 4. Error Handling System
+    void errorMessage(const char *msg) {
+     printf("\033[1;31mError: %s\033[0m\n", msg); // Red text
+}
+
+// 5. Menu and UI System
+    void basicMode() {
+        int choice; double a, b;
+        printf("เลือกโหมด:\n[1] บวก [2] ลบ [3] คูณ [4] หาร\n[5] ยกกำลัง [6] รากที่สอง [7] แฟกทอเรียล\n> ");
+        scanf("%d", &choice);
+
+        if (choice == 6) {
+        printf("ป้อนเลข: ");
+        scanf("%lf", &a);
+        squareRoot(a);
+        sprintf(history[historyCount++].entry, "SQRT(%.2f)", a);
+    } else if (choice == 7) {
+            int n;
+        printf("ป้อนเลข: ");
+        scanf("%d", &n);
+        printf("Result: %llu\n", factorial(n));
+        sprintf(history[historyCount++].entry, "%d!", n);
+    } else {
+        printf("ป้อนเลขสองจำนวน: ");
+        scanf("%lf %lf", &a, &b);
+        switch(choice) {
+            case 1: add(a, b); sprintf(history[historyCount++].entry, "%.2f + %.2f", a, b); break;
+            case 2: subtract(a, b); sprintf(history[historyCount++].entry, "%.2f - %.2f", a, b); break;
+            case 3: multiply(a, b); sprintf(history[historyCount++].entry, "%.2f * %.2f", a, b); break;
+            case 4: divide(a, b); sprintf(history[historyCount++].entry, "%.2f / %.2f", a, b); break;
+            case 5: power(a, b); sprintf(history[historyCount++].entry, "%.2f ^ %.2f", a, b); break;
+            default: errorMessage("เลือกไม่ถูกต้อง");
+        }
+    }
+}
+
+void advancedMode() {
+    printf("[1] เรขาคณิต [2] สถิติ [3] การเงิน\n[4] แปลงหน่วย [5] สมการ\n(ยังไม่พร้อมใช้งาน)\n");
+}
+
+void shopMode() {
+    printf("ระบบ POS:\n[1] เพิ่มสินค้า [2] คำนวณรวม [3] ส่วนลด\n[4] ภาษี [5] เงินทอน [6] ใบเสร็จ\n(ยังไม่พร้อมใช้งาน)\n");
+}
+
+void historyMode() {
+    int option;
+    printf("[1] ดูประวัติ [2] ลบประวัติ [3] สถิติการใช้งาน\n> ");
+    scanf("%d", &option);
+    switch(option) {
+        case 1:
+            for (int i = 0; i < historyCount; i++) printf("%d: %s\n", i+1, history[i].entry);
+            break;
+        case 2:
+            historyCount = 0;
+            printf("ลบประวัติเรียบร้อย\n");
+            break;
+        case 3:
+            printf("คุณใช้โปรแกรมทั้งหมด %d ครั้ง\n", historyCount);
+            break;
+        default:
+            errorMessage("ตัวเลือกไม่ถูกต้อง");
+    }
+}
+
+// 6. Main Application Logic
+int main() {
+    int mainChoice;
+    while (1) {
+        printf("\n===== เครื่องคิดเลขครบครัน =====\n");
+        printf("[1] โหมดพื้นฐาน\n[2] โหมดขั้นสูง\n[3] โหมดร้านค้า\n[4] โหมดประวัติ\n[0] ออกจากโปรแกรม\n> ");
+        scanf("%d", &mainChoice);
+
+        switch(mainChoice) {
+            case 1: basicMode(); break;
+            case 2: advancedMode(); break;
+            case 3: shopMode(); break;
+            case 4: historyMode(); break;
+            case 0: exit(0);
+            default: errorMessage("เมนูไม่ถูกต้อง");
+        }
+    }
+    return 0;
+}
